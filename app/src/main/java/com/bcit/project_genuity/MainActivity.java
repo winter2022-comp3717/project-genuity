@@ -1,4 +1,4 @@
-package com.bcit.genuity;
+package com.bcit.project_genuity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

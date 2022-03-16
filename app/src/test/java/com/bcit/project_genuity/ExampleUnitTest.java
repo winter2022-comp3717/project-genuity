@@ -1,4 +1,4 @@
-package com.bcit.genuity;
+package com.bcit.project_genuity;
 
 import org.junit.Test;
 

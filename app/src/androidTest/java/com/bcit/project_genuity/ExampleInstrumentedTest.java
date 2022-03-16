@@ -1,4 +1,4 @@
-package com.bcit.genuity;
+package com.bcit.project_genuity;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.bcit.genuity", appContext.getPackageName());
+        assertEquals("com.bcit.project_genuity", appContext.getPackageName());
     }
 }
