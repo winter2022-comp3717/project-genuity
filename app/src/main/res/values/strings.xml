@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">project-genuity</string>
+    <string name="company_name">Genuity</string>
+    <string name="home_page_button">Get Started....</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
