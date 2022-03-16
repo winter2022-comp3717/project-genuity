@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/custom_white"
     android:orientation="vertical"
-    tools:context=".SignInActivity">
+    tools:context=".LogInActivity">
 
     <TextView
-        android:id="@+id/textView_signin_intro"
+        android:id="@+id/textView_login_intro"
         android:layout_width="match_parent"
         android:layout_height="82dp"
         android:layout_marginTop="30px"
@@ -17,45 +17,38 @@
         android:fontFamily="@font/abeezee"
         android:text="@string/company_name"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/custom_purple"
         android:textSize="48sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="476dp"
+        android:layout_height="380dp"
         android:layout_marginLeft="65px"
         android:layout_marginRight="65px"
         android:background="@color/custom_orange_light"
         android:orientation="vertical"
         android:paddingLeft="25px"
         android:paddingTop="70px"
-        android:paddingEnd="45px"
         android:paddingRight="25px">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/authentication_name" />
-
-        <EditText
-            android:id="@+id/editText_signin_Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="65px"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:layout_marginBottom="55px"
+            android:fontFamily="@font/abeezee"
+            android:text="@string/authentication_login_greeting"
+            android:textColor="@color/custom_black"
+            android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/authentication_email" />
 
         <EditText
-            android:id="@+id/editText_signin_Email"
+            android:id="@+id/editText_login_Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="65px"
@@ -65,29 +58,13 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/authentication_Phnum" />
-
-        <EditText
-            android:id="@+id/editText_signin_Phnum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="65px"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/authentication_password" />
 
         <EditText
-            android:id="@+id/editText_signin_Password"
+            android:id="@+id/editText_login_Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="65px"
@@ -97,22 +74,20 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/button_createAcc_signin"
-            style="@style/Widget.AppCompat.Button"
+            android:id="@+id/button_signin_login"
             android:layout_width="191dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="70px"
-            android:text="@string/authentication_signup"
+            android:layout_marginTop="140px"
+            android:text="@string/authentication_login"
             android:textAllCaps="false" />
-
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_logIn_signin"
+        android:id="@+id/button_signup_login"
         android:layout_width="246dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="175px"
-        android:text="@string/authentication_login" />
+        android:text="@string/authentication_signup" />
 </LinearLayout>

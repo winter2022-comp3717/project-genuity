@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "618256147500",
+    "project_id": "project-genuity",
+    "storage_bucket": "project-genuity.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618256147500:android:b4a47e327b7c8529dfdd89",
+        "android_client_info": {
+          "package_name": "com.bcit.project_genuity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618256147500-pmqq8o2a6i2kcadjjprmuuf5r18phblb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzKwW9P7MGGHV--zPkZJ5CYidN88DlT14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618256147500-pmqq8o2a6i2kcadjjprmuuf5r18phblb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
