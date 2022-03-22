@@ -16,13 +16,12 @@
         android:layout_marginTop="306dp"
         android:layout_marginBottom="264dp"
         android:fontFamily="@font/abeezee"
-        android:text="Genuity"
+        android:text="@string/company_name"
         android:textAlignment="center"
         android:textColor="@color/custom_orange"
         android:textSize="55sp"
         android:textStyle="bold"
         android:typeface="serif"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +43,7 @@
 
     <Button
         android:id="@+id/button_main"
-        style="@style/Widget.Material3.Button.TextButton"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

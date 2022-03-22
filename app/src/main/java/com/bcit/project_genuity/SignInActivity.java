@@ -32,6 +32,7 @@ public class SignInActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null){
+            System.out.println("test me");
             finish();
             return;
         }
