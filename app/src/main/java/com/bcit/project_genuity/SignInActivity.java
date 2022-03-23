@@ -61,10 +61,10 @@ public class SignInActivity extends AppCompatActivity {
         EditText ePhone = findViewById(R.id.editText_signin_Phnum);
         EditText ePassword = findViewById(R.id.editText_signin_Password);
 
-        String name = eName.getText().toString();
-        String email = eEmail.getText().toString();
-        String phone = ePhone.getText().toString();
-        String password = ePassword.getText().toString();
+        String name = eName.getText().toString().trim();
+        String email = eEmail.getText().toString().trim();
+        String phone = ePhone.getText().toString().trim();
+        String password = ePassword.getText().toString().trim();
 
         if(name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()){
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show();
