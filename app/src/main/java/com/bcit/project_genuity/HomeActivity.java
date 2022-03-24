@@ -29,7 +29,8 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         TextView textView = findViewById(R.id.textView_greeting_home);
-        Button button = findViewById(R.id.button_account_home);
+        Button buttonAccount = findViewById(R.id.button_account_home);
+        Button buttonSearch = findViewById(R.id.button_search_home);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -40,10 +41,17 @@ public class HomeActivity extends AppCompatActivity {
             finish();
         }
 
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAccountPage();
+            }
+        });
+
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSearchPage();
             }
         });
 
@@ -67,6 +75,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private void showAccountPage() {
         Intent intent = new Intent(this, AccountActivity.class);
+        startActivity(intent);
+    }
+
+    private void showSearchPage() {
+        Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 }

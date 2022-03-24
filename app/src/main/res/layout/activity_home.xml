@@ -24,7 +24,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/abeezee"
-        android:text="Welcome "
+        android:text="@string/authentication_login_greeting"
         android:textSize="34sp" />
+
+    <Button
+        android:id="@+id/button_search_home"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="117dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/custom_blue"
+        android:text="@string/searchButton_text"
+        android:textAllCaps="false"
+        android:textColor="@color/custom_white"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_search"
+        app:iconGravity="textStart"
+        app:iconTint="@color/custom_white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </LinearLayout>

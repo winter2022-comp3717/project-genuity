@@ -23,4 +23,5 @@
     <string name="logoutText_account">Log out</string>
     <string name="eventsButton_account">Your Events</string>
     <string name="dummyText_fields">Lorem Ipsum</string>
+    <string name="searchButton_text">Search</string>
 </resources>
