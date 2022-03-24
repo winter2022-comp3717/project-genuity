@@ -10,6 +10,7 @@ public class Event {
      * String - Location
      */
 
+    public String id;
     public String name;
     public String host;
     public String datetime;
@@ -21,13 +22,18 @@ public class Event {
 
     }
 
-    public Event(String name, String host, String datetime, String imgUrl, String description, String location) {
+    public Event(String id, String name, String host, String datetime, String imgUrl, String description, String location) {
+        this.id = id;
         this.name = name;
         this.host = host;
         this.datetime = datetime;
         this.imgUrl = imgUrl;
         this.description = description;
         this.location = location;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
