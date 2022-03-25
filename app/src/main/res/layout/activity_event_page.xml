@@ -83,15 +83,15 @@
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView_eventPage_aboutTitle"
+            android:id="@+id/textView_eventPage_locationTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
-            android:text="About Host"
+            android:text="Location"
             android:textSize="34sp" />
 
         <TextView
-            android:id="@+id/textView_eventPage_aboutDetails"
+            android:id="@+id/textView_eventPage_locationDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView" />
