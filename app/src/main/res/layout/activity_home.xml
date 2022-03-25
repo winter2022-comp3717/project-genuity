@@ -27,12 +27,28 @@
         android:text="@string/authentication_login_greeting"
         android:textSize="34sp" />
 
+    <TextView
+        android:id="@+id/textView_description_home"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/abeezee"
+        android:text="@string/homepage_description"
+        android:textSize="20sp" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2_events_home"
+        android:layout_width="match_parent"
+        android:layout_height="466dp"
+        android:layout_marginTop="50dp" />
+
     <Button
         android:id="@+id/button_search_home"
         style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="117dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/custom_blue"
         android:text="@string/searchButton_text"
         android:textAllCaps="false"

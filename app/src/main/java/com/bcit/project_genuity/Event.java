@@ -1,6 +1,8 @@
 package com.bcit.project_genuity;
 
-public class Event {
+import java.io.Serializable;
+
+public class Event implements Serializable {
     /**
      * String - Name
      * String - Host

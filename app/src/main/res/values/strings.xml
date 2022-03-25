@@ -24,4 +24,6 @@
     <string name="eventsButton_account">Your Events</string>
     <string name="dummyText_fields">Lorem Ipsum</string>
     <string name="searchButton_text">Search</string>
+    <string name="image_events_description">content_description_media</string>
+    <string name="homepage_description">Checkout some upcoming events or search for one</string>
 </resources>
