@@ -31,7 +31,7 @@ public class SignInActivity extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() != null){
+        if (mAuth.getCurrentUser() != null) {
             finish();
             return;
         }
@@ -65,7 +65,22 @@ public class SignInActivity extends AppCompatActivity {
         String phone = ePhone.getText().toString().trim();
         String password = ePassword.getText().toString().trim();
 
-        if(name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()){
+        try {
+            long phoneNumber = Long.parseLong(phone);
+            if (phoneNumber < 0) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Invalid phone number!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (phone.length() != 10) {
+            Toast.makeText(this, "Phone numbers must be 10 digits long!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show();
             return;
         }

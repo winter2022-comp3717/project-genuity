@@ -55,8 +55,8 @@ public class LogInActivity extends AppCompatActivity {
         EditText eEmail = findViewById(R.id.editText_login_Email);
         EditText ePassword = findViewById(R.id.editText_login_Password);
 
-        String email = eEmail.getText().toString();
-        String password = ePassword.getText().toString();
+        String email = eEmail.getText().toString().trim();
+        String password = ePassword.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show();
