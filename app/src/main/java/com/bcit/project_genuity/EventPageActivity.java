@@ -48,8 +48,6 @@ public class EventPageActivity extends AppCompatActivity {
 
         Event event = (Event) getIntent().getSerializableExtra("Event");
 
-        System.out.println(event.getDatetime());
-
         TextView eventName = findViewById(R.id.textView_eventPage_name);
         eventName.setText(event.getName());
         TextView datetime = findViewById(R.id.textView_eventPage_datetime);
@@ -72,43 +70,46 @@ public class EventPageActivity extends AppCompatActivity {
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                ArrayList<String> events = new ArrayList<>();
-                                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
-                                DatabaseReference eventArrayRef = userRef.child("events");
 
-//                                userRef.addValueEventListener(new ValueEventListener() {
-//                                    @Override
-//                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                        User user = snapshot.getValue(User.class);
-//                                        if (user != null) {
-//                                            if (user.events != null)
-//                                                events.addAll(user.events);
-//                                        }
-//                                        events.add(event.getId());
-//                                        String[] arr = {"0"};
-//                                        eventArrayRef.setValue(Arrays.asList(arr)).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<Void> task) {
-//                                                //showHomePage();
-//                                            }
-//                                        });
-//                                    }
-//
-//                                    @Override
-//                                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                                    }
-//                                });
                             }
                         })
                         .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
+                                getEventsList(event);
                             }
                         })
                         .show();
+            }
+        });
+    }
+
+    private void getEventsList(Event event) {
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        ArrayList<String> events = new ArrayList<>();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
+        DatabaseReference eventArrayRef = userRef.child("events");
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if (user != null) {
+                    if (user.events != null)
+                        events.addAll(user.events);
+                }
+                events.add(event.getId());
+                eventArrayRef.setValue(Arrays.asList(events)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        showHomePage();
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

@@ -100,9 +100,6 @@ public class SearchActivity extends AppCompatActivity {
                                 //Create and Event object from the data.
                                 Event event = new Event(id, name, host, datetime, imgUrl, description, location);
 
-                                System.out.println(event.getId());
-                                System.out.println(event.getDatetime());
-
                                 eventsArraylist.add(event);
                             }
                         } else {
@@ -152,15 +149,11 @@ public class SearchActivity extends AppCompatActivity {
                                 //Create and Event object from the data.
                                 Event event = new Event(id, name, host, datetime, imgUrl, description, location);
 
-                                System.out.println(event.getId());
-                                System.out.println(event.getDatetime());
-
                                 eventsArraylist.add(event);
                             }
                         } else {
                             Log.w("Debug", "Error getting documents.", task.getException());
                         }
-                        System.out.println("Size -> " + eventsArraylist.size());
                         Event[] events = eventsArraylist.toArray(new Event[eventsArraylist.size()]);
                         RecyclerView recyclerView = findViewById(R.id.recyclerView_search);
                         SearchEventsAdapter searchEventsAdapter = new SearchEventsAdapter(events);
