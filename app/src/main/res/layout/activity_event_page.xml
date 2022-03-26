@@ -11,105 +11,105 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="#808085"
+        android:background="#CECED6"
         android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:paddingBottom="20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="115dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_eventPage_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="10dp"
-                android:paddingBottom="40dp"
-                android:text="Current Date"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/button_eventPage_info"
-                style="@style/Widget.Material3.Button.Icon"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                app:icon="@android:drawable/ic_menu_info_details"
-                app:iconGravity="textEnd"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/button_eventPage_info"
+            style="@style/Widget.Material3.Button.Icon"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            app:icon="@android:drawable/ic_menu_info_details"
+            app:iconGravity="textEnd"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView_eventPage_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Event Name"
-            android:textSize="34sp" />
+            android:layout_weight="0"
+            android:fontFamily="@font/abeezee"
+            android:text="@string/dummyText_fields"
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/textView_eventPage_hostName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Host Name" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="337dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingTop="20dp">
+            android:fontFamily="@font/abeezee"
+            android:text="@string/dummyText_fields"
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView_eventPage_detailTitle"
-            android:layout_width="match_parent"
+            android:id="@+id/textView_eventPage_datetime"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:text="Details"
-            android:textSize="34sp" />
+            android:fontFamily="@font/abeezee"
+            android:text="@string/dummyText_fields"
+            android:textStyle="italic" />
 
-        <TextView
-            android:id="@+id/textView_eventPage_eventDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/textView_eventPage_locationTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:text="Location"
-            android:textSize="34sp" />
-
-        <TextView
-            android:id="@+id/textView_eventPage_locationDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingStart="5dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/textView_eventPage_detailTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abeezee"
+            android:paddingBottom="10dp"
+            android:text="@string/detailField_Event"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/textView_eventPage_eventDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/abeezee"
+            android:text="@string/dummyText_fields"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView_eventPage_locationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abeezee"
+            android:paddingBottom="10dp"
+            android:text="@string/locationField_Event"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/textView_eventPage_locationDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abeezee"
+            android:text="@string/dummyText_fields"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/button_eventPage_join"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Join Event" />
+            android:layout_marginTop="150dp"
+            android:text="Join Event"
+            android:textColor="@color/custom_purple" />
     </LinearLayout>
 
 </LinearLayout>

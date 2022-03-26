@@ -26,4 +26,6 @@
     <string name="searchButton_text">Search</string>
     <string name="image_events_description">content_description_media</string>
     <string name="homepage_description">Checkout some upcoming events or search for one</string>
+    <string name="detailField_Event">Details</string>
+    <string name="locationField_Event">Location</string>
 </resources>

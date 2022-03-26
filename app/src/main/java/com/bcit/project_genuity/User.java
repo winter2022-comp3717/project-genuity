@@ -7,7 +7,7 @@ public class User {
     public String name;
     public String email;
     public String phone;
-    public List<Event> events;
+    public List<String> events;
 
     public User() {
 
@@ -20,7 +20,7 @@ public class User {
         this.events = new ArrayList<>();
     }
 
-    public void addEvent(Event event) {
+    public void addEvent(String event) {
         this.events.add(event);
     }
 }

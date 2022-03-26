@@ -71,12 +71,12 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-        eventButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToUserEvents();
-            }
-        });
+//        eventButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                goToUserEvents();
+//            }
+//        });
     }
 
     private void logoutUser() {
@@ -86,8 +86,8 @@ public class AccountActivity extends AppCompatActivity {
         finish();
     }
 
-    private void goToUserEvents() {
-        Intent intent = new Intent(this, UserEventsActivity.class);
-        startActivity(intent);
-    }
+//    private void goToUserEvents() {
+//        Intent intent = new Intent(this, UserEventsActivity.class);
+//        startActivity(intent);
+//    }
 }

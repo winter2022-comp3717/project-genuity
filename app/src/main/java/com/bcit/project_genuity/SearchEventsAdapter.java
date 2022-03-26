@@ -1,5 +1,6 @@
 package com.bcit.project_genuity;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,9 @@ public class SearchEventsAdapter extends RecyclerView.Adapter<SearchEventsAdapte
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    System.out.println(currEvent.getId());
+                    Intent intent = new Intent(view.getContext(), EventPageActivity.class);
+                    intent.putExtra("Event", currEvent);
+                    view.getContext().startActivity(intent);
                 }
             });
         }
