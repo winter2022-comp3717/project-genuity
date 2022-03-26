@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +36,10 @@ public class LogInActivity extends AppCompatActivity {
             finish();
             return;
         }
+
+        LinearLayout linearLayout = findViewById(R.id.LinearLayout_login);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
 
         Button buttonLogin = findViewById(R.id.button_signin_login);
         buttonLogin.setOnClickListener(new View.OnClickListener() {

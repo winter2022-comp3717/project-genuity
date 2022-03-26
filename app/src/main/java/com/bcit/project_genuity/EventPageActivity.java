@@ -70,13 +70,13 @@ public class EventPageActivity extends AppCompatActivity {
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
+                                //getEventsList(event);
                             }
                         })
                         .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                getEventsList(event);
+
                             }
                         })
                         .show();
@@ -99,7 +99,7 @@ public class EventPageActivity extends AppCompatActivity {
                         events.addAll(user.events);
                 }
                 events.add(event.getId());
-                eventArrayRef.setValue(Arrays.asList(events)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                userRef.setValue(Arrays.asList(events)).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         showHomePage();

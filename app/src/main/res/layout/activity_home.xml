@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="15dp"
     tools:context=".HomeActivity">
 
     <Button
@@ -14,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
         app:icon="@drawable/ic_account"
         app:iconGravity="textEnd"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -39,7 +39,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2_events_home"
         android:layout_width="match_parent"
-        android:layout_height="466dp"
+        android:layout_height="421dp"
         android:layout_marginTop="50dp" />
 
     <Button

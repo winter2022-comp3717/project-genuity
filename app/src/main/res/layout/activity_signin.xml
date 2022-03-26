@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout_signin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/custom_white"
@@ -104,7 +105,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="70px"
             android:text="@string/authentication_signup"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/custom_black" />
 
     </LinearLayout>
 
@@ -114,5 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="175px"
-        android:text="@string/authentication_login" />
+        android:backgroundTint="@color/custom_blue"
+        android:text="@string/authentication_login"
+        android:textColor="@color/custom_blue_light" />
 </LinearLayout>
