@@ -145,12 +145,6 @@ public class HomeActivity extends AppCompatActivity {
                         ViewPager2 viewPager2 = findViewById(R.id.viewPager2_events_home);
                         ViewPagerEventsHome viewPagerEventsHome = new ViewPagerEventsHome(activity, events);
                         viewPager2.setAdapter(viewPagerEventsHome);
-                        viewPager2.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                            }
-                        });
                     }
                 });
     }

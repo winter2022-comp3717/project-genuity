@@ -7,7 +7,7 @@ public class User {
     public String name;
     public String email;
     public String phone;
-    public List<String> events;
+    public ArrayList<String> events;
 
     public User() {
 
