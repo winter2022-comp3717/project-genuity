@@ -1,9 +1,11 @@
 package com.bcit.project_genuity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -49,6 +51,7 @@ public class HomeEventsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        CardView cardView = view.findViewById(R.id.card_event_fragment);
         TextView name = view.findViewById(R.id.home_event_title);
         TextView host = view.findViewById(R.id.home_event_host);
         TextView datetime = view.findViewById(R.id.home_event_datetime);
@@ -58,5 +61,14 @@ public class HomeEventsFragment extends Fragment {
         host.setText(event.getHost());
         datetime.setText(event.getDatetime());
         description.setText(event.getDescription());
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), EventPageActivity.class);
+                intent.putExtra("Event", event);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 }

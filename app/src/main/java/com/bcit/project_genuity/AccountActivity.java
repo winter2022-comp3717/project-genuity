@@ -86,8 +86,9 @@ public class AccountActivity extends AppCompatActivity {
         finish();
     }
 
-//    private void goToUserEvents() {
-//        Intent intent = new Intent(this, UserEventsActivity.class);
-//        startActivity(intent);
-//    }
+    private void goToUserEvents() {
+        Intent intent = new Intent(this, UserEventsActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

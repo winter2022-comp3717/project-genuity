@@ -3,10 +3,8 @@ package com.bcit.project_genuity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -92,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
 
         FragmentActivity activity = (FragmentActivity) this;
         fStore = FirebaseFirestore.getInstance();
-        getEvents(activity);
+        setupViewPager(activity);
     }
 
     private void showAccountPage() {
@@ -105,7 +103,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void getEvents(FragmentActivity activity) {
+    public void setupViewPager(FragmentActivity activity) {
         List<Event> eventsArraylist = new ArrayList<>();
 
         fStore.collection("events")
@@ -147,6 +145,12 @@ public class HomeActivity extends AppCompatActivity {
                         ViewPager2 viewPager2 = findViewById(R.id.viewPager2_events_home);
                         ViewPagerEventsHome viewPagerEventsHome = new ViewPagerEventsHome(activity, events);
                         viewPager2.setAdapter(viewPagerEventsHome);
+                        viewPager2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        });
                     }
                 });
     }
