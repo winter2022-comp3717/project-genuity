@@ -7,9 +7,20 @@
     android:orientation="vertical"
     tools:context=".SearchActivity">
 
-    <Button
-        android:id="@+id/getData_search"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchBar_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="get data" />
+        android:layout_height="?attr/actionBarSize"
+        android:padding="10dp"
+        app:queryHint="Search for Events..."
+        android:layout_margin="5dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
 </LinearLayout>

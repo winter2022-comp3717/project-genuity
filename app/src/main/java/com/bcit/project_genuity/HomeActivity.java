@@ -109,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
         List<Event> eventsArraylist = new ArrayList<>();
 
         fStore.collection("events")
-                .limit(10)
+                .limit(5)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -138,18 +138,12 @@ public class HomeActivity extends AppCompatActivity {
                                 //Create and Event object from the data.
                                 Event event = new Event(id, name, host, datetime, imgUrl, description, location);
 
-                                System.out.println(event.getId());
-                                System.out.println(event.getDatetime());
-
                                 eventsArraylist.add(event);
                             }
                         } else {
                             Log.w("Debug", "Error getting documents.", task.getException());
                         }
-
                         Event[] events = eventsArraylist.toArray(new Event[eventsArraylist.size()]);
-                        System.out.println("Events size -> " + events.length);
-
                         ViewPager2 viewPager2 = findViewById(R.id.viewPager2_events_home);
                         ViewPagerEventsHome viewPagerEventsHome = new ViewPagerEventsHome(activity, events);
                         viewPager2.setAdapter(viewPagerEventsHome);

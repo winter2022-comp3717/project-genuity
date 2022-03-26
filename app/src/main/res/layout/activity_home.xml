@@ -48,7 +48,6 @@
         android:layout_width="117dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
         android:backgroundTint="@color/custom_blue"
         android:text="@string/searchButton_text"
         android:textAllCaps="false"
