@@ -10,7 +10,10 @@ import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +46,10 @@ public class HomeActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_home);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
 
         TextView textView = findViewById(R.id.textView_greeting_home);
         Button buttonAccount = findViewById(R.id.button_account_home);

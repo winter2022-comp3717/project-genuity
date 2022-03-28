@@ -3,12 +3,16 @@ package com.bcit.project_genuity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,7 +23,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -56,6 +59,10 @@ public class UserEventsActivity extends AppCompatActivity {
             finish();
         }
 
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_user_events);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
+
         FragmentActivity activity = (FragmentActivity) this;
         fStore = FirebaseFirestore.getInstance();
 
@@ -65,7 +72,7 @@ public class UserEventsActivity extends AppCompatActivity {
                 HashMap<String, String> results = (HashMap<String, String>) task.getResult().getValue();
                 if (results != null) {
                     events = new ArrayList<>(results.values());
-                    setupViewPager(activity);
+                    setupRecyclerView(activity);
                 } else {
                     showEmptyEvent();
                 }
@@ -75,11 +82,11 @@ public class UserEventsActivity extends AppCompatActivity {
 
     public void showEmptyEvent() {
         TextView textView = findViewById(R.id.textView_userEvents_empty);
-        textView.setText("No events found!");
+        textView.setText("Not Registered it any events yet!!");
     }
 
 
-    public void setupViewPager(FragmentActivity activity) {
+    public void setupRecyclerView(FragmentActivity activity) {
         List<Event> eventsArraylist = new ArrayList<>();
 
         fStore.collection("events")
@@ -118,9 +125,10 @@ public class UserEventsActivity extends AppCompatActivity {
                             Log.w("Debug", "Error getting documents.", task.getException());
                         }
                         Event[] events = eventsArraylist.toArray(new Event[eventsArraylist.size()]);
-                        ViewPager2 viewPager2 = findViewById(R.id.viewPager2_userEvents);
-                        ViewPagerEventsHome viewPagerEventsHome = new ViewPagerEventsHome(activity, events);
-                        viewPager2.setAdapter(viewPagerEventsHome);
+                        RecyclerView recyclerView = findViewById(R.id.recyclerView_user_events);
+                        SearchEventsAdapter searchEventsAdapter = new SearchEventsAdapter(events);
+                        recyclerView.setAdapter(searchEventsAdapter);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                     }
                 });
     }

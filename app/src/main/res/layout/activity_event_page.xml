@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout_event"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -36,6 +37,7 @@
             android:layout_weight="0"
             android:fontFamily="@font/abeezee"
             android:text="@string/dummyText_fields"
+            android:textColor="@color/custom_black"
             android:textSize="40sp" />
 
         <TextView
@@ -45,6 +47,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/abeezee"
             android:text="@string/dummyText_fields"
+            android:textColor="@color/custom_black"
             android:textSize="16sp" />
 
         <TextView
@@ -53,6 +56,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/abeezee"
             android:text="@string/dummyText_fields"
+            android:textColor="@color/custom_black"
             android:textStyle="italic" />
 
     </LinearLayout>
@@ -74,6 +78,7 @@
             android:fontFamily="@font/abeezee"
             android:paddingBottom="10dp"
             android:text="@string/detailField_Event"
+            android:textColor="@color/custom_orange"
             android:textSize="34sp" />
 
         <TextView
@@ -92,6 +97,7 @@
             android:fontFamily="@font/abeezee"
             android:paddingBottom="10dp"
             android:text="@string/locationField_Event"
+            android:textColor="@color/custom_orange"
             android:textSize="34sp" />
 
         <TextView

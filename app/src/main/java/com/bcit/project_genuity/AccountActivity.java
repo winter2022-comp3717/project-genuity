@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,6 +47,10 @@ public class AccountActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_account);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("users").child(currentUser.getUid());

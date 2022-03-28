@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +48,10 @@ public class SearchActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_search);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
 
         fStore = FirebaseFirestore.getInstance();
         setUpInitialRecyclerView();
@@ -119,7 +126,6 @@ public class SearchActivity extends AppCompatActivity {
         List<Event> eventsArraylist = new ArrayList<>();
 
         fStore.collection("events")
-                .limit(20)
                 .whereEqualTo("name", query)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

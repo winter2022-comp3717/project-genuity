@@ -4,7 +4,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +60,10 @@ public class EventPageActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_event);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
 
         Event event = (Event) getIntent().getSerializableExtra("Event");
 
@@ -122,6 +129,7 @@ public class EventPageActivity extends AppCompatActivity {
                     Toast.makeText(EventPageActivity.this,
                             "You are already registered for this event!",
                             Toast.LENGTH_LONG).show();
+                    return;
                 }
                 showHomePage();
             }

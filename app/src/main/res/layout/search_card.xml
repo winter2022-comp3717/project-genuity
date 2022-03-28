@@ -10,22 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/textView_event_name_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dummyText_fields"
-            android:textSize="25sp"
-            android:textStyle="bold"
             android:fontFamily="@font/abeezee"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:text="@string/dummyText_fields"
+            android:textColor="@color/custom_blue"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/textView_event_date_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/abeezee"
             android:padding="10dp"
-            android:text="@string/dummyText_fields"/>
+            android:text="@string/dummyText_fields"
+            android:textColor="@color/custom_purple"
+            android:textStyle="italic" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
