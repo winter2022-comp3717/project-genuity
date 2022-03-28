@@ -37,9 +37,7 @@ public class LogInActivity extends AppCompatActivity {
             return;
         }
 
-        LinearLayout linearLayout = findViewById(R.id.LinearLayout_login);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        linearLayout.startAnimation(animation);
+        setAnimation();
 
         Button buttonLogin = findViewById(R.id.button_signin_login);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -94,5 +92,11 @@ public class LogInActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void setAnimation() {
+        LinearLayout linearLayout = findViewById(R.id.LinearLayout_login);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
     }
 }

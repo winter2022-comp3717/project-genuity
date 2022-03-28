@@ -49,23 +49,19 @@ public class UserEventsActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference userRef = database.getReference("users").child(currentUser.getUid());
-        DatabaseReference userEventsRef = userRef.child("events");
-
         if (currentUser == null) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         }
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayout_user_events);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        linearLayout.startAnimation(animation);
+        setAnimation();
 
         FragmentActivity activity = (FragmentActivity) this;
         fStore = FirebaseFirestore.getInstance();
-
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference userRef = database.getReference("users").child(currentUser.getUid());
+        DatabaseReference userEventsRef = userRef.child("events");
         userEventsRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -85,6 +81,11 @@ public class UserEventsActivity extends AppCompatActivity {
         textView.setText("Not Registered it any events yet!!");
     }
 
+    public void setAnimation() {
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_user_events);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
+    }
 
     public void setupRecyclerView(FragmentActivity activity) {
         List<Event> eventsArraylist = new ArrayList<>();

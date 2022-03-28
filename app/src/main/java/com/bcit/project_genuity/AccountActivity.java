@@ -27,17 +27,9 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
-        TextView name = findViewById(R.id.textView_name_account);
-        TextView email = findViewById(R.id.textView_email_account);
-        TextView phone = findViewById(R.id.textView_phone_account);
-
-        Button logoutButton = findViewById(R.id.button_logout_account);
-        Button eventButton = findViewById(R.id.button_events_account);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -48,9 +40,12 @@ public class AccountActivity extends AppCompatActivity {
             finish();
         }
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayout_account);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        linearLayout.startAnimation(animation);
+        setAnimation();
+
+        //Text Fields For User Details
+        TextView name = findViewById(R.id.textView_name_account);
+        TextView email = findViewById(R.id.textView_email_account);
+        TextView phone = findViewById(R.id.textView_phone_account);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("users").child(currentUser.getUid());
@@ -73,6 +68,7 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
+        Button logoutButton = findViewById(R.id.button_logout_account);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +76,7 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
+        Button eventButton = findViewById(R.id.button_events_account);
         eventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,5 +96,11 @@ public class AccountActivity extends AppCompatActivity {
         Intent intent = new Intent(this, UserEventsActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void setAnimation() {
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_account);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
     }
 }

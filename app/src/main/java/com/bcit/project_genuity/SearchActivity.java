@@ -49,9 +49,7 @@ public class SearchActivity extends AppCompatActivity {
             finish();
         }
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayout_search);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        linearLayout.startAnimation(animation);
+        setAnimation();
 
         fStore = FirebaseFirestore.getInstance();
         setUpInitialRecyclerView();
@@ -72,6 +70,12 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void setAnimation() {
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_search);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
     }
 
     public void setUpInitialRecyclerView() {

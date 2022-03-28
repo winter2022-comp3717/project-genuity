@@ -19,6 +19,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignInActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -39,9 +42,7 @@ public class SignInActivity extends AppCompatActivity {
             return;
         }
 
-        LinearLayout linearLayout = findViewById(R.id.LinearLayout_signin);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        linearLayout.startAnimation(animation);
+        setAnimation();
 
         Button buttonCrrAcc = findViewById(R.id.button_createAcc_signin);
         buttonCrrAcc.setOnClickListener(new View.OnClickListener() {
@@ -72,8 +73,17 @@ public class SignInActivity extends AppCompatActivity {
         String phone = ePhone.getText().toString().trim();
         String password = ePassword.getText().toString().trim();
 
+        String regex = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        Pattern pattern = Pattern.compile(regex);
+
         if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Matcher matcher = pattern.matcher(email);
+        if (!matcher.matches()) {
+            Toast.makeText(this, "Invalid Email!", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -89,6 +99,11 @@ public class SignInActivity extends AppCompatActivity {
 
         if (phone.length() != 10) {
             Toast.makeText(this, "Phone numbers must be 10 digits long!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (password.length() < 5) {
+            Toast.makeText(this, "Password must be at least 6 characters long!", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -127,5 +142,11 @@ public class SignInActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LogInActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void setAnimation() {
+        LinearLayout linearLayout = findViewById(R.id.LinearLayout_signin);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
     }
 }

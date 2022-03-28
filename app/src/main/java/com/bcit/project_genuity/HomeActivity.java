@@ -47,14 +47,6 @@ public class HomeActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayout_home);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        linearLayout.startAnimation(animation);
-
-        TextView textView = findViewById(R.id.textView_greeting_home);
-        Button buttonAccount = findViewById(R.id.button_account_home);
-        Button buttonSearch = findViewById(R.id.button_search_home);
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
 
@@ -64,6 +56,9 @@ public class HomeActivity extends AppCompatActivity {
             finish();
         }
 
+        setAnimation();
+
+        Button buttonAccount = findViewById(R.id.button_account_home);
         buttonAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        Button buttonSearch = findViewById(R.id.button_search_home);
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        TextView textView = findViewById(R.id.textView_greeting_home);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("users").child(currentUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
@@ -108,6 +105,12 @@ public class HomeActivity extends AppCompatActivity {
     private void showSearchPage() {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
+    }
+
+    public void setAnimation() {
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_home);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
     }
 
     public void setupViewPager(FragmentActivity activity) {

@@ -27,20 +27,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() != null){
+        if (mAuth.getCurrentUser() != null) {
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(intent);
             return;
         }
 
-        ImageView imageView = findViewById(R.id.imageView_main);
-        TextView textView = findViewById(R.id.textView_main);
-        Button button = findViewById(R.id.button_main);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        imageView.startAnimation(animation);
-        button.startAnimation(animation);
-        textView.startAnimation(animation);
+        setAnimation();
 
+        Button button = findViewById(R.id.button_main);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,5 +43,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void setAnimation() {
+        ImageView imageView = findViewById(R.id.imageView_main);
+        TextView textView = findViewById(R.id.textView_main);
+        Button button = findViewById(R.id.button_main);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        imageView.startAnimation(animation);
+        button.startAnimation(animation);
+        textView.startAnimation(animation);
     }
 }

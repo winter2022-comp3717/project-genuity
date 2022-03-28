@@ -1,7 +1,6 @@
 package com.bcit.project_genuity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class User {
     public String id;

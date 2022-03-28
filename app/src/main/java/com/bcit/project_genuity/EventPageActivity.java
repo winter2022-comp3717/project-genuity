@@ -61,23 +61,10 @@ public class EventPageActivity extends AppCompatActivity {
             finish();
         }
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayout_event);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        linearLayout.startAnimation(animation);
+        setAnimation();
 
         Event event = (Event) getIntent().getSerializableExtra("Event");
-
-        TextView eventName = findViewById(R.id.textView_eventPage_name);
-        eventName.setText(event.getName());
-        TextView datetime = findViewById(R.id.textView_eventPage_datetime);
-        datetime.setText(event.getDatetime());
-        TextView eventDetails = findViewById(R.id.textView_eventPage_eventDetails);
-        eventDetails.setText(event.getDescription());
-        TextView eventHostName = findViewById(R.id.textView_eventPage_hostName);
-        eventHostName.setText(event.getHost());
-        TextView eventLocation = findViewById(R.id.textView_eventPage_locationDetails);
-        eventLocation.setText(event.getLocation());
-
+        setUpPage(event);
 
         Button button = findViewById(R.id.button_eventPage_join);
         button.setOnClickListener(new View.OnClickListener() {
@@ -116,19 +103,16 @@ public class EventPageActivity extends AppCompatActivity {
         eventArrayRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                HashMap<Object, Object> results= (HashMap<Object, Object>) task.getResult().getValue();
-                System.out.println(results);
+                HashMap<Object, Object> results = (HashMap<Object, Object>) task.getResult().getValue();
                 newEvent.put(key, event.getId());
-                if(results == null){
+                if (results == null) {
                     eventArrayRef.setValue(newEvent);
                     showRegisteredToast();
-                } else if (!results.containsValue(event.getId())){
+                } else if (!results.containsValue(event.getId())) {
                     eventArrayRef.updateChildren(newEvent);
                     showRegisteredToast();
                 } else {
-                    Toast.makeText(EventPageActivity.this,
-                            "You are already registered for this event!",
-                            Toast.LENGTH_LONG).show();
+                    showAlreadyJoined();
                     return;
                 }
                 showHomePage();
@@ -142,9 +126,41 @@ public class EventPageActivity extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
     }
 
+    private void showAlreadyJoined() {
+        new MaterialAlertDialogBuilder(EventPageActivity.this)
+                .setTitle("Event Already Joined")
+                .setMessage("You are already registered for this event!")
+                .setNeutralButton("CLOSE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
+    }
+
     private void showHomePage() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void setAnimation() {
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_event);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        linearLayout.startAnimation(animation);
+    }
+
+    public void setUpPage(Event event) {
+        TextView eventName = findViewById(R.id.textView_eventPage_name);
+        eventName.setText(event.getName());
+        TextView datetime = findViewById(R.id.textView_eventPage_datetime);
+        datetime.setText(event.getDatetime());
+        TextView eventDetails = findViewById(R.id.textView_eventPage_eventDetails);
+        eventDetails.setText(event.getDescription());
+        TextView eventHostName = findViewById(R.id.textView_eventPage_hostName);
+        eventHostName.setText(event.getHost());
+        TextView eventLocation = findViewById(R.id.textView_eventPage_locationDetails);
+        eventLocation.setText(event.getLocation());
     }
 }
