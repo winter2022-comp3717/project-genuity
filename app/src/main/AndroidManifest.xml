@@ -13,6 +13,9 @@
             android:name=".EventPageActivity"
             android:exported="false" />
         <activity
+            android:name=".UserEventsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity

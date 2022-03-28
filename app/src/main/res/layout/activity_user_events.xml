@@ -14,6 +14,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="20sp"
         android:text="@string/eventsButton_account"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2_userEvents"
+        android:layout_width="match_parent"
+        android:layout_height="337dp" />
+
+    <TextView
+        android:id="@+id/textView_userEvents_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp" />
 </LinearLayout>

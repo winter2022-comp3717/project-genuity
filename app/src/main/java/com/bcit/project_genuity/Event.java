@@ -1,6 +1,7 @@
 package com.bcit.project_genuity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Event implements Serializable {
     /**
@@ -19,6 +20,7 @@ public class Event implements Serializable {
     public String imgUrl;
     public String description;
     public String location;
+    private ArrayList<User> users;
 
     public Event() {
 
@@ -32,6 +34,7 @@ public class Event implements Serializable {
         this.imgUrl = imgUrl;
         this.description = description;
         this.location = location;
+        this.users = new ArrayList<>();
     }
 
     public String getId() {
@@ -60,5 +63,9 @@ public class Event implements Serializable {
 
     public String getLocation() {
         return location;
+    }
+
+    public void addUser(User user) {
+        this.users.add(user);
     }
 }

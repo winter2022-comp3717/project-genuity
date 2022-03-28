@@ -76,9 +76,9 @@ public class HomeActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if (user != null) {
-                    textView.setText("Welcome, " + user.name.substring(0, 1).toUpperCase() + user.name.substring(1) + "!");
+                String userName = snapshot.child("name").getValue(String.class);
+                if (userName != null) {
+                    textView.setText("Welcome, " + userName.substring(0, 1).toUpperCase() + userName.substring(1) + "!");
                 }
             }
 

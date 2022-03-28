@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,13 +21,23 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class EventPageActivity extends AppCompatActivity {
+
+    FirebaseFirestore fs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +50,7 @@ public class EventPageActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
+        fs = FirebaseFirestore.getInstance();
 
         if (currentUser == null) {
             Intent intent = new Intent(this, MainActivity.class);
@@ -66,17 +78,16 @@ public class EventPageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 new MaterialAlertDialogBuilder(EventPageActivity.this)
                         .setTitle("Join Event")
-                        .setMessage("Do you want to go to " + event.getName() + " ?")
+                        .setMessage("Do you want to join " + event.getName() + "?")
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                //getEventsList(event);
+                                getEventsList(event);
                             }
                         })
                         .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
                             }
                         })
                         .show();
@@ -86,32 +97,41 @@ public class EventPageActivity extends AppCompatActivity {
 
     private void getEventsList(Event event) {
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        ArrayList<String> events = new ArrayList<>();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
         DatabaseReference eventArrayRef = userRef.child("events");
+        DocumentReference eventRef = fs.collection("events").document(event.getId());
 
-        userRef.addValueEventListener(new ValueEventListener() {
+        eventRef.update("registeredUsers", FieldValue.arrayUnion(userID));
+
+        String key = eventArrayRef.push().getKey();
+
+        HashMap<String, Object> newEvent = new HashMap<>();
+        eventArrayRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if (user != null) {
-                    if (user.events != null)
-                        events.addAll(user.events);
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                HashMap<Object, Object> results= (HashMap<Object, Object>) task.getResult().getValue();
+                System.out.println(results);
+                newEvent.put(key, event.getId());
+                if(results == null){
+                    eventArrayRef.setValue(newEvent);
+                    showRegisteredToast();
+                } else if (!results.containsValue(event.getId())){
+                    eventArrayRef.updateChildren(newEvent);
+                    showRegisteredToast();
+                } else {
+                    Toast.makeText(EventPageActivity.this,
+                            "You are already registered for this event!",
+                            Toast.LENGTH_LONG).show();
                 }
-                events.add(event.getId());
-                userRef.setValue(Arrays.asList(events)).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        showHomePage();
-                    }
-                });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                showHomePage();
             }
         });
+    }
+
+    private void showRegisteredToast() {
+        Toast.makeText(EventPageActivity.this,
+                "Registered for event!",
+                Toast.LENGTH_LONG).show();
     }
 
     private void showHomePage() {

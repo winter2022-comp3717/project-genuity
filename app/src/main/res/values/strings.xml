@@ -28,4 +28,5 @@
     <string name="homepage_description">Checkout some upcoming events or search for one</string>
     <string name="detailField_Event">Details</string>
     <string name="locationField_Event">Location</string>
+    <string name="userEvents_button_cancel">Cancel</string>
 </resources>

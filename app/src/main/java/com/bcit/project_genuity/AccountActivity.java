@@ -50,11 +50,13 @@ public class AccountActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if (user != null) {
-                    name.setText(user.name);
-                    email.setText(user.email);
-                    phone.setText(user.phone);
+                String userName = snapshot.child("name").getValue(String.class);
+                String userEmail = snapshot.child("email").getValue(String.class);
+                String userPhone = snapshot.child("phone").getValue(String.class);
+                if (userName != null) {
+                    name.setText(userName);
+                    email.setText(userEmail);
+                    phone.setText(userPhone);
                 }
             }
 
@@ -71,12 +73,12 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-//        eventButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                goToUserEvents();
-//            }
-//        });
+        eventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToUserEvents();
+            }
+        });
     }
 
     private void logoutUser() {
