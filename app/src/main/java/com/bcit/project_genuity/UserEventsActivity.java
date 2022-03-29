@@ -78,7 +78,7 @@ public class UserEventsActivity extends AppCompatActivity {
 
     public void showEmptyEvent() {
         TextView textView = findViewById(R.id.textView_userEvents_empty);
-        textView.setText("Not Registered it any events yet!!");
+        textView.setText("Not registered in any events yet!");
     }
 
     public void setAnimation() {
