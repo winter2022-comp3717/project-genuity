@@ -20,13 +20,15 @@ public class Event implements Serializable {
     public String imgUrl;
     public String description;
     public String location;
-    private ArrayList<User> users;
+    public ArrayList<User> users;
+    public Long capacity;
+    public int registeredUsers;
 
     public Event() {
 
     }
 
-    public Event(String id, String name, String host, String datetime, String imgUrl, String description, String location) {
+    public Event(String id, String name, String host, String datetime, String imgUrl, String description, String location, Long capacity) {
         this.id = id;
         this.name = name;
         this.host = host;
@@ -34,8 +36,23 @@ public class Event implements Serializable {
         this.imgUrl = imgUrl;
         this.description = description;
         this.location = location;
+        this.capacity = capacity;
         this.users = new ArrayList<>();
     }
+
+    public Event(String id, String name, String host, String datetime, String imgUrl, String description, String location, Long capacity, int registeredUsers) {
+        this.id = id;
+        this.name = name;
+        this.host = host;
+        this.datetime = datetime;
+        this.imgUrl = imgUrl;
+        this.description = description;
+        this.location = location;
+        this.capacity = capacity;
+        this.users = new ArrayList<>();
+        this.registeredUsers = registeredUsers;
+    }
+
 
     public String getId() {
         return id;
@@ -64,6 +81,12 @@ public class Event implements Serializable {
     public String getLocation() {
         return location;
     }
+
+    public ArrayList<User> getUsers () {return this.users;}
+
+    public int getNumberOfUsers () {return this.registeredUsers;}
+
+    public Long getCapacity () {return this.capacity;}
 
     public void addUser(User user) {
         this.users.add(user);

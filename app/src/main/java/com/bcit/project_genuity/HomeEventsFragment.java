@@ -56,11 +56,15 @@ public class HomeEventsFragment extends Fragment {
         TextView host = view.findViewById(R.id.home_event_host);
         TextView datetime = view.findViewById(R.id.home_event_datetime);
         TextView description = view.findViewById(R.id.home_event_description);
+        TextView currRegistered = view.findViewById(R.id.textView_homeEvents_currRegistered);
+        TextView capacity = view.findViewById(R.id.textView_homeEvents_capacity);
 
         name.setText(event.getName());
         host.setText(event.getHost());
         datetime.setText(event.getDatetime());
         description.setText(event.getDescription());
+        currRegistered.setText(String.valueOf(event.getNumberOfUsers()));
+        capacity.setText(String.valueOf(event.getCapacity()));
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override

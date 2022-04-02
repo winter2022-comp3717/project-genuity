@@ -108,8 +108,10 @@ public class SearchActivity extends AppCompatActivity {
 
                                 String imgUrl = document.getData().get("imgUrl").toString();
 
+                                Long capacity = (Long) document.getData().get("capacity");
+
                                 //Create and Event object from the data.
-                                Event event = new Event(id, name, host, datetime, imgUrl, description, location);
+                                Event event = new Event(id, name, host, datetime, imgUrl, description, location, capacity);
 
                                 eventsArraylist.add(event);
                             }
@@ -156,8 +158,15 @@ public class SearchActivity extends AppCompatActivity {
 
                                 String imgUrl = document.getData().get("imgUrl").toString();
 
+                                Long capacity = (Long) document.getData().get("capacity");
+
+                                Object registeredUsers = document.getData().get("registeredUsers");
+                                int numberOfRegisteredUsers = 0;
+                                if (registeredUsers != null) {
+                                    numberOfRegisteredUsers = ((ArrayList<String>) registeredUsers).size();
+                                }
                                 //Create and Event object from the data.
-                                Event event = new Event(id, name, host, datetime, imgUrl, description, location);
+                                Event event = new Event(id, name, host, datetime, imgUrl, description, location, capacity, numberOfRegisteredUsers);
 
                                 eventsArraylist.add(event);
                             }

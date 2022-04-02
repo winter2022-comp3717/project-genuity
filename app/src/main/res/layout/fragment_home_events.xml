@@ -76,6 +76,46 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView_homeEvents_registeredDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/homeEvents_capacity" />
+
+                <TextView
+                    android:id="@+id/textView_homeEvents_currRegistered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/dummyText_fields" />
+
+                <TextView
+                    android:id="@+id/textView_homeEvents_seperator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/homeEvents_seperator" />
+
+                <TextView
+                    android:id="@+id/textView_homeEvents_capacity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/dummyText_fields" />
+            </LinearLayout>
+
             <!-- Buttons -->
 
         </LinearLayout>

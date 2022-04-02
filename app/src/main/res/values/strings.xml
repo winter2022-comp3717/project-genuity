@@ -29,4 +29,6 @@
     <string name="detailField_Event">Details</string>
     <string name="locationField_Event">Location</string>
     <string name="userEvents_button_cancel">Cancel</string>
+    <string name="homeEvents_capacity">Currently Registered:</string>
+    <string name="homeEvents_seperator">/</string>
 </resources>

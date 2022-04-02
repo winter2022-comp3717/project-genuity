@@ -152,5 +152,10 @@ public class EventPageActivity extends AppCompatActivity {
         eventHostName.setText(event.getHost());
         TextView eventLocation = findViewById(R.id.textView_eventPage_locationDetails);
         eventLocation.setText(event.getLocation());
+
+        TextView currRegistered = findViewById(R.id.textView_eventPage_currRegistered);
+        TextView capacity = findViewById(R.id.textView_eventPage_capacity);
+        currRegistered.setText(String.valueOf(event.getNumberOfUsers()));
+        capacity.setText(String.valueOf(event.getCapacity()));
     }
 }
