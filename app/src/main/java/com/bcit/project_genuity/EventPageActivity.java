@@ -121,7 +121,7 @@ public class EventPageActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 HashMap<Object, Object> results = (HashMap<Object, Object>) task.getResult().getValue();
-                if (results.containsValue(event.getId())) {
+                if (results != null && results.containsValue(event.getId())) {
                     isCurrentlyRegistered = true;
                     findViewById(R.id.button_eventPage_cancel).setVisibility(View.VISIBLE);
                 }
@@ -193,6 +193,7 @@ public class EventPageActivity extends AppCompatActivity {
 
             }
         });
+        finish();
         showHomePage();
     }
 
