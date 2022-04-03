@@ -23,9 +23,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EventPageActivity extends AppCompatActivity {
@@ -87,27 +89,51 @@ public class EventPageActivity extends AppCompatActivity {
 
         eventRef.update("registeredUsers", FieldValue.arrayUnion(userID));
 
-        String key = eventArrayRef.push().getKey();
-
-        HashMap<String, Object> newEvent = new HashMap<>();
-        eventArrayRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        eventRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                HashMap<Object, Object> results = (HashMap<Object, Object>) task.getResult().getValue();
-                newEvent.put(key, event.getId());
-                if (results == null) {
-                    eventArrayRef.setValue(newEvent);
-                    showRegisteredToast();
-                } else if (!results.containsValue(event.getId())) {
-                    eventArrayRef.updateChildren(newEvent);
-                    showRegisteredToast();
-                } else {
-                    showAlreadyJoined();
-                    return;
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                ArrayList<String> registeredUsers = ((ArrayList<String>) task.getResult().getData().get("registeredUsers"));
+                int currNumOfUsers = 0;
+                if(registeredUsers != null) {
+                    currNumOfUsers = registeredUsers.size();
                 }
-                showHomePage();
+                int capacity = Math.toIntExact((Long) task.getResult().getData().get("capacity"));
+
+                String key = eventArrayRef.push().getKey();
+
+                HashMap<String, Object> newEvent = new HashMap<>();
+
+                int finalCurrNumOfUsers = currNumOfUsers;
+
+                eventArrayRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        HashMap<Object, Object> results = (HashMap<Object, Object>) task.getResult().getValue();
+                        newEvent.put(key, event.getId());
+                        if (finalCurrNumOfUsers == capacity) {
+                            showFullyBooked();
+                            return;
+                        } else if (results == null) {
+                            eventArrayRef.setValue(newEvent);
+                            showRegisteredToast();
+                        } else if (!results.containsValue(event.getId())) {
+                            eventArrayRef.updateChildren(newEvent);
+                            showRegisteredToast();
+                        } else {
+                            showAlreadyJoined();
+                            return;
+                        }
+                        showHomePage();
+                    }
+                });
             }
         });
+    }
+
+    private void showFullyBooked() {
+        Toast.makeText(EventPageActivity.this,
+                "Event is fully booked!",
+                Toast.LENGTH_LONG).show();
     }
 
     private void showRegisteredToast() {
