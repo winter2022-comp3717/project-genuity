@@ -168,16 +168,6 @@ public class EventPageActivity extends AppCompatActivity {
         eventRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                ArrayList<String> registeredUsers = ((ArrayList<String>) task.getResult().getData().get("registeredUsers"));
-                Integer userKey = 0;
-                for (int i = 0; i < registeredUsers.size(); i++) {
-                    if (registeredUsers.get(i).equals(userID)) {
-                        userKey = i;
-                        break;
-                    }
-                }
-                HashMap<String, Object> updates = new HashMap<>();
-                updates.put(String.valueOf(userKey), FieldValue.delete());
                 eventRef.update("registeredUsers", FieldValue.arrayRemove(userID));
                 eventArrayRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
