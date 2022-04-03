@@ -11,7 +11,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class HomeEventsFragment extends Fragment {
 
@@ -58,6 +61,7 @@ public class HomeEventsFragment extends Fragment {
         TextView description = view.findViewById(R.id.home_event_description);
         TextView currRegistered = view.findViewById(R.id.textView_homeEvents_currRegistered);
         TextView capacity = view.findViewById(R.id.textView_homeEvents_capacity);
+        ImageView imageView = view.findViewById(R.id.home_imageView);
 
         name.setText(event.getName());
         host.setText(event.getHost());
@@ -65,6 +69,7 @@ public class HomeEventsFragment extends Fragment {
         description.setText(event.getDescription());
         currRegistered.setText(String.valueOf(event.getNumberOfUsers()));
         capacity.setText(String.valueOf(event.getCapacity()));
+        Picasso.get().load(event.getImgUrl()).into(imageView);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
