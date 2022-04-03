@@ -33,6 +33,11 @@ import java.util.HashMap;
 public class EventPageActivity extends AppCompatActivity {
 
     FirebaseFirestore fs;
+    String userID;
+    DatabaseReference userRef;
+    DatabaseReference eventArrayRef;
+    DocumentReference eventRef;
+    boolean isCurrentlyRegistered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +63,17 @@ public class EventPageActivity extends AppCompatActivity {
         Event event = (Event) getIntent().getSerializableExtra("Event");
         setUpPage(event);
 
-        Button button = findViewById(R.id.button_eventPage_join);
-        button.setOnClickListener(new View.OnClickListener() {
+        this.userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        this.userRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
+        this.eventArrayRef = userRef.child("events");
+        this.eventRef = fs.collection("events").document(event.getId());
+
+        Button joinButton = findViewById(R.id.button_eventPage_join);
+        Button cancelButton = findViewById(R.id.button_eventPage_cancel);
+
+        checkRegistrationStatus(event);
+
+        joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new MaterialAlertDialogBuilder(EventPageActivity.this)
@@ -79,22 +93,51 @@ public class EventPageActivity extends AppCompatActivity {
                         .show();
             }
         });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialAlertDialogBuilder(EventPageActivity.this)
+                        .setTitle("Cancel")
+                        .setMessage("Are you sure you want to cancel this event?")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                cancelEvent(event);
+                            }
+                        })
+                        .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        })
+                        .show();
+            }
+        });
+    }
+
+    private void checkRegistrationStatus(Event event) {
+        eventArrayRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                HashMap<Object, Object> results = (HashMap<Object, Object>) task.getResult().getValue();
+                if (results.containsValue(event.getId())) {
+                    isCurrentlyRegistered = true;
+                    findViewById(R.id.button_eventPage_cancel).setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     private void getEventsList(Event event) {
-        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
-        DatabaseReference eventArrayRef = userRef.child("events");
-        DocumentReference eventRef = fs.collection("events").document(event.getId());
-
-        eventRef.update("registeredUsers", FieldValue.arrayUnion(userID));
-
         eventRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                eventRef.update("registeredUsers", FieldValue.arrayUnion(userID));
+
                 ArrayList<String> registeredUsers = ((ArrayList<String>) task.getResult().getData().get("registeredUsers"));
                 int currNumOfUsers = 0;
-                if(registeredUsers != null) {
+                if (registeredUsers != null) {
                     currNumOfUsers = registeredUsers.size();
                 }
                 int capacity = Math.toIntExact((Long) task.getResult().getData().get("capacity"));
@@ -105,29 +148,52 @@ public class EventPageActivity extends AppCompatActivity {
 
                 int finalCurrNumOfUsers = currNumOfUsers;
 
+                newEvent.put(key, event.getId());
+                if (finalCurrNumOfUsers == capacity) {
+                    showFullyBooked();
+                    return;
+                } else if (!isCurrentlyRegistered) {
+                    eventArrayRef.updateChildren(newEvent);
+                    showRegisteredToast();
+                } else {
+                    showAlreadyJoined();
+                    return;
+                }
+                showHomePage();
+            }
+        });
+    }
+
+    private void cancelEvent(Event event) {
+        eventRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                ArrayList<String> registeredUsers = ((ArrayList<String>) task.getResult().getData().get("registeredUsers"));
+                Integer userKey = 0;
+                for (int i = 0; i < registeredUsers.size(); i++) {
+                    if (registeredUsers.get(i).equals(userID)) {
+                        userKey = i;
+                        break;
+                    }
+                }
+                HashMap<String, Object> updates = new HashMap<>();
+                updates.put(String.valueOf(userKey), FieldValue.delete());
+                eventRef.update("registeredUsers", FieldValue.arrayRemove(userID));
                 eventArrayRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        HashMap<Object, Object> results = (HashMap<Object, Object>) task.getResult().getValue();
-                        newEvent.put(key, event.getId());
-                        if (finalCurrNumOfUsers == capacity) {
-                            showFullyBooked();
-                            return;
-                        } else if (results == null) {
-                            eventArrayRef.setValue(newEvent);
-                            showRegisteredToast();
-                        } else if (!results.containsValue(event.getId())) {
-                            eventArrayRef.updateChildren(newEvent);
-                            showRegisteredToast();
-                        } else {
-                            showAlreadyJoined();
-                            return;
+                        HashMap<String, Object> results = (HashMap<String, Object>) task.getResult().getValue();
+                        for (HashMap.Entry<String, Object> entry : results.entrySet()) {
+                            if (entry.getValue().equals(event.getId())) {
+                                eventArrayRef.child(entry.getKey()).removeValue();
+                            }
                         }
-                        showHomePage();
                     }
                 });
+
             }
         });
+        showHomePage();
     }
 
     private void showFullyBooked() {
