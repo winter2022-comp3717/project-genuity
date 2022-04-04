@@ -32,4 +32,5 @@
     <string name="homeEvents_capacity">Currently Registered:</string>
     <string name="homeEvents_seperator">/</string>
     <string name="event_cancelButton">Cancel Event</string>
+    <string name="joined_event_host">Host</string>
 </resources>

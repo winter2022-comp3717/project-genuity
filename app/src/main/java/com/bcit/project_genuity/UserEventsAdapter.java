@@ -1,0 +1,86 @@
+package com.bcit.project_genuity;
+
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+
+public class UserEventsAdapter extends RecyclerView.Adapter<UserEventsAdapter.ViewHolder> {
+
+    private Event[] localDataSet;
+
+    /**
+     * Provide a reference to the type of views that you are using
+     * This template comes with a TextView
+     */
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final TextView textViewName;
+        private final TextView textViewDate;
+        private Event currEvent;
+
+        public ViewHolder(View view) {
+            super(view);
+
+            textViewName = view.findViewById(R.id.textView_event_name_search); //error here should be expected, this is a template
+            textViewDate = view.findViewById(R.id.textView_event_date_search);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), JoinedEventPage.class);
+                    intent.putExtra("Event", currEvent);
+                    view.getContext().startActivity(intent);
+                }
+            });
+        }
+
+        public TextView getTextViewDate() {
+            return textViewDate;
+        }
+
+        public TextView getTextViewName() {
+            return textViewName;
+        }
+    }
+
+    /**
+     * Initialize the dataset of the Adapter.
+     *
+     * @param dataSet String[] containing the data to populate views to be used
+     *                by RecyclerView.
+     */
+    public UserEventsAdapter(Event[] dataSet) {
+        localDataSet = dataSet;
+    }
+
+    // Create new views (invoked by the layout manager)
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        // Create a new view, which defines the UI of the list item
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.search_card, viewGroup, false); //error here should be expected, this is a template
+
+        return new ViewHolder(view);
+    }
+
+    // Replace the contents of a view (invoked by the layout manager)
+    @Override
+    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+
+        // Get element from your dataset at this position and replace the
+        // contents of the view with that element
+        viewHolder.currEvent = localDataSet[position];
+        viewHolder.getTextViewName().setText(localDataSet[position].getName());
+        viewHolder.getTextViewDate().setText(localDataSet[position].getDatetime());
+    }
+
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
+        return localDataSet.length;
+    }
+}

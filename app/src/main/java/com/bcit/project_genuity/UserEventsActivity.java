@@ -128,8 +128,8 @@ public class UserEventsActivity extends AppCompatActivity {
                         }
                         Event[] events = eventsArraylist.toArray(new Event[eventsArraylist.size()]);
                         RecyclerView recyclerView = findViewById(R.id.recyclerView_user_events);
-                        SearchEventsAdapter searchEventsAdapter = new SearchEventsAdapter(events);
-                        recyclerView.setAdapter(searchEventsAdapter);
+                        UserEventsAdapter userEventsAdapter = new UserEventsAdapter(events);
+                        recyclerView.setAdapter(userEventsAdapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                     }
                 });

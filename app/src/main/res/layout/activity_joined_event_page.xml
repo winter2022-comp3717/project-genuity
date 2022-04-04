@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout_joined_event"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingTop="20dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="20dp"
+    tools:context=".JoinedEventPage">
+
+    <ImageView
+        android:id="@+id/imageView_joined_event_barcode"
+        android:layout_width="246dp"
+        android:layout_height="264dp"
+        android:layout_gravity="center_horizontal"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView_joined_event_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/dummyText_fields"
+        android:textAlignment="center"
+        android:textColor="@color/custom_black"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_joined_event_host_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/joined_event_host"
+        android:textColor="@color/custom_black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_joined_event_host"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dummyText_fields"
+        android:textColor="@color/custom_black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView_joined_event_details_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/detailField_Event"
+        android:textColor="@color/custom_black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_joined_event_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dummyText_fields"
+        android:textColor="@color/custom_black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView_joined_event_location_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/locationField_Event"
+        android:textColor="@color/custom_black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_joined_event_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dummyText_fields"
+        android:textColor="@color/custom_black"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/button_joined_event_leave_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#FF5722"
+        android:text="@string/event_cancelButton"
+        android:textColor="@color/custom_white" />
+
+</LinearLayout>
