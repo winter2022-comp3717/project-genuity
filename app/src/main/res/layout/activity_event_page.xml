@@ -11,25 +11,14 @@
     <LinearLayout
         android:id="@+id/linearLayout_event_img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="235dp"
         android:layout_weight="1"
+        android:alpha="0.8"
         android:background="#CECED6"
         android:orientation="vertical"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingBottom="20dp">
-
-        <Button
-            android:id="@+id/button_eventPage_info"
-            style="@style/Widget.Material3.Button.Icon"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            app:icon="@android:drawable/ic_menu_info_details"
-            app:iconGravity="textEnd"
-            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView_eventPage_name"
@@ -37,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:fontFamily="@font/abeezee"
+            android:paddingTop="10dp"
             android:text="@string/dummyText_fields"
             android:textColor="@color/custom_white"
             android:textSize="40sp" />
@@ -47,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/abeezee"
+            android:paddingLeft="10dp"
             android:text="@string/dummyText_fields"
             android:textColor="@color/custom_white"
             android:textSize="16sp" />
@@ -56,6 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/abeezee"
+            android:paddingLeft="10dp"
             android:text="@string/dummyText_fields"
             android:textColor="@color/custom_white"
             android:textStyle="italic" />
@@ -153,7 +145,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:text="Join Event"
-            android:textColor="@color/custom_purple" />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/button_eventPage_cancel"

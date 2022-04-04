@@ -75,9 +75,9 @@
         android:layout_gravity="right"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="7dp"
-        android:backgroundTint="@color/custom_blue"
+        android:backgroundTint="@color/custom_purple"
         android:text="@string/eventsButton_account"
-        android:textColor="@color/custom_blue_light"
+        android:textColor="@color/custom_white"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginRight="20dp"
-        android:backgroundTint="@color/custom_orange"
+        android:backgroundTint="@color/custom_orange_light"
         android:text="@string/logoutText_account"
         android:textColor="@color/custom_white"
         tools:ignore="TextContrastCheck" />

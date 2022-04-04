@@ -19,7 +19,7 @@
         android:layout_marginBottom="20sp"
         android:fontFamily="@font/abeezee"
         android:text="@string/eventsButton_account"
-        android:textColor="@color/custom_blue"
+        android:textColor="@color/custom_purple"
         android:textSize="30sp" />
 
     <TextView

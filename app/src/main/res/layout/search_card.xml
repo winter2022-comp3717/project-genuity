@@ -18,7 +18,7 @@
             android:fontFamily="@font/abeezee"
             android:padding="10dp"
             android:text="@string/dummyText_fields"
-            android:textColor="@color/custom_blue"
+            android:textColor="@color/custom_orange_light"
             android:textSize="25sp"
             android:textStyle="bold" />
 
