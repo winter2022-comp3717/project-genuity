@@ -2,6 +2,9 @@ package com.bcit.project_genuity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -26,6 +29,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -235,6 +240,25 @@ public class EventPageActivity extends AppCompatActivity {
         eventHostName.setText(event.getHost());
         TextView eventLocation = findViewById(R.id.textView_eventPage_locationDetails);
         eventLocation.setText(event.getLocation());
+        LinearLayout linearLayout = findViewById(R.id.linearLayout_event_img);
+
+        Picasso.get().load(event.getImgUrl()).into(new Target() {
+
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                linearLayout.setBackground(new BitmapDrawable(bitmap));
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        });
 
         TextView currRegistered = findViewById(R.id.textView_eventPage_currRegistered);
         TextView capacity = findViewById(R.id.textView_eventPage_capacity);
